@@ -34,7 +34,12 @@ jQuery(function() {
     var carousel = jQuery('#jcarousel-<?php echo $id_suffix; ?>').jcarousel(carouselConfig);
     <?php if(isset($configs['autoscroll'])): ?>
     var autoscrollConfig = <?php echo json_encode($configs['autoscroll']);?>;
-    carousel.jcarouselAutoscroll(autoscrollConfig);
+    carousel.jcarouselAutoscroll(autoscrollConfig)
+    .hover(function() {
+        jQuery(this).jcarouselAutoscroll('stop');
+    }, function() {
+        jQuery(this).jcarouselAutoscroll('start');
+    });
     <?php endif; ?>
 });
 </script>
